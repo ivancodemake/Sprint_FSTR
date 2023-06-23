@@ -44,5 +44,3 @@ class Images(models.Model):
     mountain = models.ForeignKey(Mountain, related_name='images', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=30)
-
-
