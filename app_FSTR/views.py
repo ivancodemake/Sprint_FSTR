@@ -1,5 +1,7 @@
 from django.shortcuts import redirect
-from rest_framework import viewsets
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
 from .serializers import *
@@ -13,13 +15,23 @@ def reverse_to_submit(request):
     return redirect('submitData')
 
 
+schema_view = get_schema_view(
+   openapi.Info(
+      title="FSTR REST API",
+      default_version='v1'
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+)
+
+
 class MountainList(viewsets.ModelViewSet):
-    queryset = Mountain.objects.all()
+    queryset = Mountain.objects.all().order_by('id')
     serializer_class = MountainSerializer
 
 
 class MountainCreate(ListAPIView):
-    queryset = Mountain.objects.all()
+    queryset = Mountain.objects.all().order_by('id')
     serializer_class = MountainSerializer
 
     def post(self, request):
@@ -30,7 +42,7 @@ class MountainCreate(ListAPIView):
 
 
 class ImageViewSet(ListAPIView):
-    queryset = Images.objects.all()
+    queryset = Images.objects.all().order_by('id')
     serializer_class = ImagesSerializer
 
     def post(self, request, *args, **kwargs):
@@ -40,6 +52,15 @@ class ImageViewSet(ListAPIView):
         title.image = image_request
         title.save()
         return Response("Image uploaded!", status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def submit_data(request):
+    serializer = MountainSerializer(data=request.image)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
 
 
 @api_view(['GET'])

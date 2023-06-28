@@ -62,7 +62,7 @@ class MountainUpdateSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             'add_time', 'beauty_title', 'connect', 'title', 'other_titles'
         ]
-        read_only_fields = ['user', ]
+
 
 
 
