@@ -39,7 +39,6 @@ class MountainSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        print(validated_data)
         thing_data_1 = validated_data.pop('user')
         thing_data_2 = validated_data.pop('levels')
         thing_data_3 = validated_data.pop('coordinates')
@@ -56,21 +55,25 @@ class MountainSerializer(serializers.ModelSerializer):
         return instance
 
 
-class MountainUpdateSerializer(serializers.HyperlinkedModelSerializer):
+class MountainUpdateSerializer(serializers.ModelSerializer):
+    coordinates = CoordinatesSerializer()
+    levels = LevelSerializer()
+
     class Meta:
         model = Mountain
         fields = [
-            'add_time', 'beauty_title', 'connect', 'title', 'other_titles'
+            'id', 'levels', 'coordinates', 'add_time', 'status', 'beauty_title', 'connect', 'title',
+            'other_titles'
         ]
 
-
-
-
-
-
-
-
-
-
-
-
+    def update(self, instance, validated_data):
+        thing_data_1 = validated_data.pop('levels')
+        thing_data_2 = validated_data.pop('coordinates')
+        level_serializer = LevelSerializer(data=thing_data_1)
+        coord_serializer = CoordinatesSerializer(data=thing_data_2)
+        level_serializer.is_valid(raise_exception=True)
+        coord_serializer.is_valid(raise_exception=True)
+        validated_data['levels'] = level_serializer.save()
+        validated_data['coordinates'] = coord_serializer.save()
+        instance = super().update(instance, validated_data)
+        return instance

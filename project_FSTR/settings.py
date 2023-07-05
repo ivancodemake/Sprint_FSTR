@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_FSTR',
     'rest_framework',
+    'django_filters',
     'drf_yasg'
 ]
 
@@ -141,7 +142,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',   # Пагинация страниц
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
 }
+
+
 
 

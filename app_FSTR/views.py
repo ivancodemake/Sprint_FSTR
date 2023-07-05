@@ -1,13 +1,15 @@
 from django.shortcuts import redirect
-from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
-from rest_framework import viewsets, permissions
-from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
-from .serializers import *
 from rest_framework.generics import ListAPIView
-from rest_framework import status
+from rest_framework import status, mixins
 from rest_framework.decorators import api_view
+from rest_framework import viewsets, permissions, generics
+from rest_framework.response import Response
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from .serializers import *
+from .filters import MountainFilter
+import django_filters
 
 
 def reverse_to_submit(request):
@@ -28,6 +30,8 @@ schema_view = get_schema_view(
 class MountainList(viewsets.ModelViewSet):
     queryset = Mountain.objects.all().order_by('id')
     serializer_class = MountainSerializer
+    filterset_class = MountainFilter
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
 
 class MountainCreate(ListAPIView):
@@ -39,6 +43,11 @@ class MountainCreate(ListAPIView):
         serializer_for_writing.is_valid(raise_exception=True)
         serializer_for_writing.save()
         return Response(data=serializer_for_writing.data, status=status.HTTP_201_CREATED)
+
+
+class Update(generics.UpdateAPIView):
+    queryset = Mountain.objects.all()
+    serializer_class = MountainUpdateSerializer
 
 
 class ImageViewSet(ListAPIView):
@@ -56,7 +65,7 @@ class ImageViewSet(ListAPIView):
 
 @api_view(['POST'])
 def submit_data(request):
-    serializer = MountainSerializer(data=request.image)
+    serializer = MountainSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)
@@ -75,9 +84,11 @@ def get_data(request, pk):
 
 
 @api_view(['PATCH'])
-def update_data(request, pk):
+def update(request, pk):
+
     try:
         mountain = Mountain.objects.get(pk=pk)
+        print(mountain)
     except ObjectDoesNotExist:
         return Response({'state': 0, 'message': 'Mountain does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -87,6 +98,5 @@ def update_data(request, pk):
     serializer = MountainUpdateSerializer(mountain, data=request.data, partial=True)
     if serializer.is_valid():
         serializer.save()
-        return Response({'state': 1}, status.HTTP_200_OK)
+        return Response({'state': 1, 'message': 'Данные успешно обновлены'}, status.HTTP_200_OK)
     return Response({'state': 0, 'message': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-

@@ -30,10 +30,10 @@ class Mountain(models.Model):
 
 
 class Level(models.Model):
-    winter = models.CharField(max_length=4, blank=True)
-    summer = models.CharField(max_length=4, blank=True)
-    autumn = models.CharField(max_length=4, blank=True)
-    spring = models.CharField(max_length=4, blank=True)
+    winter = models.CharField(max_length=15, blank=True)
+    summer = models.CharField(max_length=15, blank=True)
+    autumn = models.CharField(max_length=15, blank=True)
+    spring = models.CharField(max_length=15, blank=True)
 
 
 class Coordinates(models.Model):
@@ -47,8 +47,3 @@ class Images(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
     title = models.CharField(blank=True, max_length=30)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
-
-
-
-
-
