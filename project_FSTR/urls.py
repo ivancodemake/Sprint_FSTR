@@ -18,12 +18,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from app_FSTR.views import *
+from rest_framework.schemas import get_schema_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app_FSTR.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('openapi/', get_schema_view(
+            title="Mountain",
+            description="FSTR application API",
+            version="0.1",
+         ), name='openapi-schema')
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,50 @@
+version: "3.8"
+
+volumes:
+  pgdata:
+  static:
+  media:
+  images:
+
+services:
+  project_fstr:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    container_name: project_fstr
+    env_file:
+      - .env
+    volumes:
+      - ./:/usr/src/app
+      - images:/app/images
+      - static:/app/static
+      - media:/app/media
+    depends_on:
+      - db
+  nginx:
+    container_name: nginx
+    working_dir: /app
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - static:/app/static
+      - media:/app/media
+      - ./compose/nginx/dev/:/etc/nginx/conf.d:ro
+    links:
+      - project_fstr
+    depends_on:
+      - project_fstr
+
+  db:
+    image: postgres:alpine
+    container_name: db
+    restart: always
+    environment:
+          - POSTGRES_USER=${FSTR_DB_LOGIN}
+          - POSTGRES_PASSWORD=${FSTR_DB_PASS}
+          - POSTGRES_DB=${FSTR_DB_NAME}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/

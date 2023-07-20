@@ -2,13 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b1e865c-583e-45bf-a5c0-56f9c574e5b5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_FSTR/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_FSTR/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_FSTR/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_FSTR/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_FSTR/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_FSTR/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_FSTR/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_FSTR/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_FSTR/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_FSTR/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_FSTR/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_FSTR/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_1o8C0SI.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_4LOaqli.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_AVu2fQ0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_Ho6pyMt.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_UxJW1hb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_YQSD3Rx.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_ZPzenAx.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_bkRpkxE.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_gG9maUK.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/images/kPgE6vZOlXo_nTDjn2d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_08Q7zPn.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_KMgJwjL.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_M32lYDr.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_OuvgZpo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_QAaYwdL.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_QFv5OaL.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_VKnuMjR.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_XBwgjy6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_iAD9XNa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_nly3CG8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_rIcCOEU.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_sfF4YTR.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/kPgE6vZOlXo_v9OGWRh.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project_FSTR/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_FSTR/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_FSTR/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_FSTR/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

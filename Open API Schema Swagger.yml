@@ -1,0 +1,411 @@
+swagger: '2.0'
+info:
+  title: FSTR REST API
+  version: v1
+host: 51.250.121.214:8000
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /api/submitData/create/:
+    get:
+      operationId: api_submitData_create_list
+      description: ''
+      parameters:
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Mountain'
+      tags:
+        - api
+    post:
+      operationId: api_submitData_create_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Mountain'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Mountain'
+      tags:
+        - api
+    parameters: []
+  /api/submitData/{id}/update/:
+    put:
+      operationId: api_submitData_update_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/MountainUpdate'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/MountainUpdate'
+      tags:
+        - api
+    patch:
+      operationId: api_submitData_update_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/MountainUpdate'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/MountainUpdate'
+      tags:
+        - api
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this mountain.
+        required: true
+        type: integer
+  /submitData/:
+    get:
+      operationId: submitData_list
+      description: ''
+      parameters:
+        - name: user__email
+          in: query
+          description: ''
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Mountain'
+      tags:
+        - submitData
+    parameters: []
+  /submitData/submit/:
+    post:
+      operationId: submitData_submit_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - submitData
+    parameters: []
+  /submitData/upload/:
+    get:
+      operationId: submitData_upload_list
+      description: ''
+      parameters:
+        - name: page
+          in: query
+          description: A page number within the paginated result set.
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            required:
+              - count
+              - results
+            type: object
+            properties:
+              count:
+                type: integer
+              next:
+                type: string
+                format: uri
+                x-nullable: true
+              previous:
+                type: string
+                format: uri
+                x-nullable: true
+              results:
+                type: array
+                items:
+                  $ref: '#/definitions/Images'
+      tags:
+        - submitData
+    post:
+      operationId: submitData_upload_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Images'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Images'
+      tags:
+        - submitData
+    parameters: []
+  /submitData/{id}/:
+    get:
+      operationId: submitData_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - submitData
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /submitData/{id}/update/:
+    patch:
+      operationId: submitData_update_partial_update
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - submitData
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+definitions:
+  User:
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 30
+      second_name:
+        title: Second name
+        type: string
+        maxLength: 30
+      last_name:
+        title: Last name
+        type: string
+        maxLength: 30
+      phone:
+        title: Phone
+        type: string
+        maxLength: 25
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 50
+  Level:
+    type: object
+    properties:
+      winter:
+        title: Winter
+        type: string
+        maxLength: 15
+      summer:
+        title: Summer
+        type: string
+        maxLength: 15
+      autumn:
+        title: Autumn
+        type: string
+        maxLength: 15
+      spring:
+        title: Spring
+        type: string
+        maxLength: 15
+  Coordinates:
+    type: object
+    properties:
+      latitude:
+        title: Latitude
+        type: number
+      longitude:
+        title: Longitude
+        type: number
+      height:
+        title: Height
+        type: integer
+        maximum: 2147483647
+        minimum: -2147483648
+  Mountain:
+    required:
+      - user
+      - levels
+      - coordinates
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      user:
+        $ref: '#/definitions/User'
+      levels:
+        $ref: '#/definitions/Level'
+      coordinates:
+        $ref: '#/definitions/Coordinates'
+      add_time:
+        title: Add time
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      status:
+        title: Status
+        type: string
+        enum:
+          - New
+          - Pending
+          - Accepted
+          - Rejected
+      beauty_title:
+        title: Beauty title
+        type: string
+        maxLength: 300
+      connect:
+        title: Connect
+        type: string
+        maxLength: 300
+      title:
+        title: Title
+        type: string
+        maxLength: 300
+      other_titles:
+        title: Other titles
+        type: string
+        maxLength: 300
+  MountainUpdate:
+    required:
+      - levels
+      - coordinates
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      levels:
+        $ref: '#/definitions/Level'
+      coordinates:
+        $ref: '#/definitions/Coordinates'
+      add_time:
+        title: Add time
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      status:
+        title: Status
+        type: string
+        enum:
+          - New
+          - Pending
+          - Accepted
+          - Rejected
+      beauty_title:
+        title: Beauty title
+        type: string
+        maxLength: 300
+      connect:
+        title: Connect
+        type: string
+        maxLength: 300
+      title:
+        title: Title
+        type: string
+        maxLength: 300
+      other_titles:
+        title: Other titles
+        type: string
+        maxLength: 300
+  Images:
+    type: object
+    properties:
+      title:
+        title: Title
+        type: string
+        maxLength: 30
+      created:
+        title: Created
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+      image:
+        title: Image
+        type: string
+        readOnly: true
+        x-nullable: true
+        format: uri
